@@ -20,11 +20,19 @@ div{
   justify-content: center;
   align-items: center;
 }
+
 img{
+  height: 150px;
+}
+
+
+.logo{
   height: 100px;
   margin-block: 10vh;
   animation: rotate 2s linear 2s infinite;
 }
+
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
