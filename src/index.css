@@ -27,8 +27,6 @@ img{
 
 
 .logo{
-  height: 100px;
-  margin-block: 10vh;
   animation: rotate 2s linear 2s infinite;
 }
 
