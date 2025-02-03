@@ -12,7 +12,7 @@ export default function InputPage() {
   };
 
   return (
-    <div className="h-screen flex justify-center  bg-cover bg-center" style={{ backgroundImage:{bgPic} }  }>
+    <div className="h-screen flex justify-center  bg-cover bg-center bg-[url('./bgPIC.png')]" style={{ backgroundImage:{bgPic} }  }>
     <div className="flex flex-col items-center">
       <img className="h-[20vh] mb-5 mt-15" src={logo} alt="Logo" />
       <h1 className="mt-6 text-5xl font-bold text-white font-sans mb-15">A</h1>
