@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Home from './pages/home'
 import WaitingPage from './pages/waiting'
 import InputPage from './pages/input'
-import Desktop from "./pages/desktop"
+import ScoreScreen from './pages/score'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/waiting" element={< WaitingPage />} />
         <Route path="/input" element={<InputPage />} />
-        <Route path="/desktop" element={<Desktop />} />
+        <Route path="/score" element={<ScoreScreen />} />
       </Routes>
     </Router>
   )
