@@ -6,13 +6,12 @@ export default function ScoreScreen() {
     { name: "ABC", score: 100 },
     { name: "DEF", score: 120 },
     { name: "GHI", score: 90 },
-    
-    
   ]);
 
   return (
-    <div className="flex flex-col items-center bg-cover bg-center text-lg text-center" style={{ backgroundImage: `url(${bgPic})` }}
->
+    <div
+    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]"
+  >
    <img className="h-[15vh]  mb-8 mt-8" src={logo} alt="Logo" />
       <h1 className="text-3xl font-bold mb-4">SCORES</h1>
       <table className="w-3/4 bg-white bg-opacity-70 rounded-lg shadow-md text-black">
@@ -34,5 +33,6 @@ export default function ScoreScreen() {
         </tbody>
       </table>
     </div>
+    
   );
 }
