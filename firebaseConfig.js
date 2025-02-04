@@ -31,7 +31,7 @@ export const loginWithGoogle = async () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-    localStorage.setItem("user", JSON.stringify(user));
+      //localStorage.setItem("user", JSON.stringify(user));
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

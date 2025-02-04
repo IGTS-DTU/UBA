@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { auth, loginWithGoogle,logout } from "../../firebaseConfig";
+import { auth, db, loginWithGoogle,logout } from "../../firebaseConfig";
 import logo from "/igtsLOGO.png"
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 function Home() {
   const handleLogin = async () => {
@@ -16,6 +17,7 @@ function Home() {
       onAuthStateChanged(auth, (user) => {
         setUser(user)
           if (user) {
+              localStorage.setItem("email", user.email);
               console.log("User is logged in");
             } else {
                 console.log("User is logged out");
@@ -31,6 +33,24 @@ function Home() {
   };
   const navigate=useNavigate();
   const [user, setUser] = useState(auth.currentUser)
+
+  const addToQueue = async (userEmail) => {
+    const formRef = doc(db, "IGTS", "Queue"); 
+  
+    try {
+      await updateDoc(formRef, {
+        users: arrayUnion(userEmail) 
+      });
+      console.log("Email added successfully!");
+    } catch (error) {
+      console.error("Error adding email:", error);
+    }
+  };
+
+  const handleStartGame=async ()=>{
+    await addToQueue(localStorage.getItem("email"));
+    navigate('/waiting')
+  }
   if(user){
     return <div>
         <img src={logo} />
@@ -38,7 +58,8 @@ function Home() {
        <div>{user.email}</div>
        
        <button onClick={()=>{
-        navigate('/waiting')
+        handleStartGame();
+        
        }}>Start Game</button>
     </div>
     }
