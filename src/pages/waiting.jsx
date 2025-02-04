@@ -6,11 +6,9 @@ export default function WaitingPage() {
       <p className="text-white text-2xl">Please be Patient</p>
       <img 
         src={logo} 
-        className="h-[20vh] my-[10vh]" 
+        className="h-[20vh] my-[10vh] logoRotate" 
         alt="Logo" 
-        style={{
-          animation: "rotate 2s linear 2s infinite"
-        }}
+        
       />
       <p className="text-white text-xl">We Will Assign You To a Pool Soon....</p>
     </div>

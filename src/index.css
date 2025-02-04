@@ -8,3 +8,26 @@
     transform: rotate(360deg);
   }
 }
+
+
+.logoRotate {
+  animation: rotateLogo 1.7s ease-in-out infinite;
+}
+
+@keyframes rotateLogo {
+  30% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-7deg); /* Small opposite rotation */
+  }
+  70% {
+    transform: rotate(367deg); /* Slight correction */
+  }
+  80% {
+    transform: rotate(360deg); /* Settling */
+  }
+  100%{
+    transform: rotate(360deg); /* Settling */
+  }
+}
