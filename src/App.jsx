@@ -15,6 +15,7 @@ function App() {
         <Route path="/roundWait" element={< RoundWaiting />} />
         <Route path="/input" element={<InputPage />} />
         <Route path="/score" element={<ScoreScreen />} />
+        <Route path="/result" element={<ScoreScreen />} />
       </Routes>
     </Router>
   )

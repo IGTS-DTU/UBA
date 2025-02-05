@@ -16,6 +16,9 @@ export default function InputPage() {
       let r=await getDoc(roundRef)
       setRound(r.data().round)
       localStorage.setItem("round",r.data().round)
+      if(r.data().status){
+        navigate("/result")
+      }
     }
     getRound()
   }, []);
@@ -57,7 +60,7 @@ export default function InputPage() {
     <div className="flex flex-col items-center">
       <img className="h-[20vh] mb-5 mt-10" src={logo} alt="Logo" />
       <h2 className=" text-4xl font-bold text-white font-sans ">{String.fromCharCode(64 + Number(localStorage.getItem("pool")))}</h2>
-      <h2 className="text-3xl mt-2 text-white" style={{fontFamily:"arial"}}>ROUND 1</h2>
+      <h2 className="text-3xl mt-2 text-white" style={{fontFamily:"arial"}}>ROUND {round}</h2>
       {!isSubmit ? (
         <form onSubmit={submit} className="flex flex-col items-center mt-16 mb-12">
 <input

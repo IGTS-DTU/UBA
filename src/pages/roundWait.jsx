@@ -11,9 +11,9 @@ export default function RoundWaiting(){
     const roundRef = doc(db, "IGTS","uba","pool"+pool,"details");
     const startedornot = onSnapshot(roundRef, async(doc) => {
       if (doc.exists()) {
-        console.log(doc.data().round);
-        console.log(localStorage.getItem("round"));
-
+        if(doc.data().status){
+          navigate("/result");
+        }
         if (doc.data().round!=Number(localStorage.getItem("round"))) {
           navigate("/input");
         }

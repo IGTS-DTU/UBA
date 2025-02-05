@@ -12,9 +12,12 @@ export default function WaitingPage(){
         const users = await getDoc(doc(db,"IGTS", `uba`,"pool"+poolno,`users`));
         //console.log(users.data().users);
         let userId = localStorage.getItem("email");
+        console.log(userId)
         const index = users.data().users.findIndex(user => user == userId);
+        console.log(users.data())
         if(index>-1)
-        localStorage.setItem("index", index);
+          localStorage.setItem("index", index);
+        
     };
     
     const fetchPool = async () => {
