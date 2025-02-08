@@ -32,24 +32,24 @@ export default function InputPage() {
     let index = localStorage.getItem("index");
     const docRef = doc(db, "IGTS","uba","pool"+pool,"input"); 
     const roundRef = doc(db, "IGTS","uba","pool"+pool,"details"); 
-    let r=await getDoc(roundRef)
-    setRound(r)
-    localStorage.setItem("round",r.data().round)
+    let rd=await getDoc(roundRef)
+    let r=rd.data().round
+    localStorage.setItem("round",r)
     try {
       await runTransaction(db, async (transaction) => {
         const docSnapshot = await transaction.get(docRef);
         if (!docSnapshot.exists()) {
           throw new Error("doc does not exist!");
         }
-
+        
         let input = docSnapshot.data() ;
         console.log(input)
-
+        
         if (index < 0 || index >= input.length) {
           throw new Error("Invalid index!");
         }
         input["round"+r][index] = [Number(bid1),Number(bid2),Number(bid3)];
-
+        
         transaction.update(docRef, input );
       });
       console.log("Email updated successfully!");
