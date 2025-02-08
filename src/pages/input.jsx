@@ -31,6 +31,10 @@ export default function InputPage() {
     let pool = localStorage.getItem("pool");
     let index = localStorage.getItem("index");
     const docRef = doc(db, "IGTS","uba","pool"+pool,"input"); 
+    const roundRef = doc(db, "IGTS","uba","pool"+pool,"details"); 
+    let r=await getDoc(roundRef)
+    setRound(r)
+    localStorage.setItem("round",r.data().round)
     try {
       await runTransaction(db, async (transaction) => {
         const docSnapshot = await transaction.get(docRef);
@@ -44,7 +48,7 @@ export default function InputPage() {
         if (index < 0 || index >= input.length) {
           throw new Error("Invalid index!");
         }
-        input["round"+round][index] = [Number(bid1),Number(bid2),Number(bid3)];
+        input["round"+r][index] = [Number(bid1),Number(bid2),Number(bid3)];
 
         transaction.update(docRef, input );
       });
