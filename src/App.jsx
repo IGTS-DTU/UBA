@@ -5,6 +5,8 @@ import WaitingPage from './pages/waiting'
 import InputPage from './pages/input'
 import ScoreScreen from './pages/score'
 import RoundWaiting from './pages/roundWait'
+import PersonalScoreDiners from './pages/personalScoreDiners'
+import PersonalScoreUBA from './pages/personalScoreUBA'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/input" element={<InputPage />} />
         <Route path="/score" element={<ScoreScreen />} />
         <Route path="/result" element={<ScoreScreen />} />
+        <Route path="/scoreDiners" element={<PersonalScoreDiners />} />
+        <Route path="/scoreUBA" element={<PersonalScoreUBA />} />
       </Routes>
     </Router>
   )

@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight"; /* Replaces @tailwind base */
+@tailwind utilities; /* Still required for utilities */
+
 
 @keyframes rotate {
   0% {
