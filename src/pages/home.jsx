@@ -9,7 +9,6 @@ function Home() {
   const handleLogin = async () => {
     try {
       const user = await loginWithGoogle();
-      alert('Signed in with google successfully');
     } catch (error) { 
       console.log('Some error occured');
     }
