@@ -14,8 +14,8 @@ const PersonalScoreDiners = () => {
   const [rank, setRank] = useState(null);
 
   useEffect(() => {
-      // const storedEmail = localStorage.getItem("email");
-      const storedEmail = "igts.tech@gmail.com";
+      const storedEmail = localStorage.getItem("email");
+      // const storedEmail = "igts.tech@gmail.com"; //used it for testing
       
   
       if (storedEmail) {
