@@ -9,9 +9,8 @@ function Home() {
   const handleLogin = async () => {
     try {
       const user = await loginWithGoogle();
-      alert('Signed in with google successfully');
-    } catch (error) { 
-      console.log('Some error occured');
+      console.log(user)
+    } catch (error) {   
     }
   };
 
@@ -19,7 +18,7 @@ function Home() {
       onAuthStateChanged(auth, (user) => {
         setUser(user)
           if (user) {
-              localStorage.setItem("email", user.email);
+              localStorage.setItem("email", user.providerData[0]?.email);
               console.log("User is logged in");
             } else {
                 console.log("User is logged out");
@@ -55,11 +54,11 @@ function Home() {
   }
   if(user){
     return     <div
-    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]"
+    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center" style={{ backgroundImage: `url(${bgPic})` }}
   >
    <img className="h-[15vh]  mb-8 mt-8" src={logo} alt="Logo" />
         <h2 className="text-white text-2xl mb-5 mt-10">{user.name}</h2>
-       <div className="text-white text-2xl mb-10">{user.email}</div>
+       <div className="text-white text-2xl mb-10">{user.providerData[0]?.email}</div>
        
        <button className="h-14 w-[11.5rem] rounded-md border-4 border-black 
                    bg-black text-white text-2xl 
@@ -73,7 +72,7 @@ function Home() {
     }
   return (
     <div
-    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]"
+    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center " style={{ backgroundImage: `url(${bgPic})` }}
   >
    <img className="h-[15vh]  mb-20 mt-10" src={logo} alt="Logo" />
    <h2 className="mb-20 font-mono text-4xl text-white [text-shadow:2px_2px_0px_black]">

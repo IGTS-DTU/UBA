@@ -23,6 +23,8 @@ export const auth = getAuth(app);
 export const db = getFirestore();
 
 const provider = new GoogleAuthProvider();
+provider.addScope("email")
+provider.addScope("profile")
 
 // Function to log in with Google
 export const loginWithGoogle = async () => {
