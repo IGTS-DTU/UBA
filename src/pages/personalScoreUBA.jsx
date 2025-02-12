@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-//import "./personalScore.css";
+// import "./personalScore.css";
 import logo from "/igtsLOGO.png";
 
 const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
@@ -96,40 +96,43 @@ const PersonalScoreUBA = () => {
   
 
   return (
-    <div className="personal-score-container">
-      <div className="score-card">
-        <img src={logo} alt="IGTS Logo" className="logo" />
-        <div className="title">UBA : {userPool}</div>
-        <div className="final-score">YOUR FINAL SCORE</div>
+    <div className="personal-score-container h-screen flex justify-center  bg-cover bg-center bg-[url('./bgPIC.png')] ">
+      
+      <div className="score-card flex flex-col items-center ">
+        <img src={logo}  alt="IGTS Logo" className="logo h-[15vh]  mb-8 mt-8" />
+        <div className="title text-3xl text-white font-bold">UBA : {userPool}</div>
+        <div className="final-score mb-10 h-14 w-60  rounded-2xl border-4 border-black 
+             bg-[#691678] text-white pr-5 px-2 text-center justify-center p-2 text-xl
+             shadow-[0_0_0_4px_white,0_0_0_8px_black] 
+             hover:bg-[#E0C4E0] transition mt-15 font-[inria_Sans]">YOUR FINAL SCORE</div>
 
-        <div className="score-table">
-          <table>
-            <thead>
-              <tr>
-                <th>ROUND</th>
-                <th>SCORE</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scores.map((score, index) => (
-                <tr key={index}>
-                  <td>Round {index + 1}</td>
-                  <td>{score}</td>
-                </tr>
-              ))}
-              <tr className="total-score">
-                <td>Total</td>
-                <td>
-                  {finalScore}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<div className="score-table flex justify-center mt-4 w-80 mb-10">
+  <table className="border-2 border-black w-full max-w-md text-center text-xl bg-white shadow-lg rounded-lg overflow-hidden">
+    <thead>
+      <tr className="bg-gray-200 text-black uppercase border border-black first:rounded-t-lg">
+        <th className="py-2 px-4 border border-black">ROUND</th>
+        <th className="py-2 px-4 border border-black">SCORE</th>
+      </tr>
+    </thead>
+    <tbody className="bg-white">
+      {scores.map((score, index) => (
+        <tr key={index} className="border border-black text-black bg-white">
+          <td className="py-2 px-4 border border-black">Round {index + 1}</td>
+          <td className="py-2 px-4 border border-black">{score}</td>
+        </tr>
+      ))}
+
+      <tr className="total-score font-semibold border border-black text-black bg-white last:rounded-b-lg">
+        <td className="py-2 px-4 border border-black">Total</td>
+        <td className="py-2 px-4 border border-black">{finalScore}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
         <div className="rank-section">
-          <div>YOUR RANK IS</div>
-          <div className="rank-number">#{rank}</div>
+        <div className="text-white text-[40px] leading-[48px] tracking-normal text-center font-[400] font-['Pixelify_Sans']">
+  YOUR RANK IS #{rank}</div>
         </div>
       </div>
     </div>
