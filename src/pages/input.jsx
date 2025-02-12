@@ -5,6 +5,7 @@ import { collection, doc, getDoc, runTransaction } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
+
 export default function InputPage() {
   const [isSubmit,setSubmit] = useState(false)
   const [round, setRound] = useState(0)
@@ -13,6 +14,8 @@ export default function InputPage() {
     async function getRound() {
       let pool = localStorage.getItem("pool");
       const roundRef = doc(db, "IGTS","uba","pool"+pool,"details"); 
+    
+
       let r=await getDoc(roundRef)
       setRound(r.data().round)
       localStorage.setItem("round",r.data().round)
@@ -21,6 +24,20 @@ export default function InputPage() {
       }
     }
     getRound()
+
+    async function checkManualRoute() {
+          const startRef = doc(db, "IGTS","started"); 
+          let docRef=doc(db,"IGTS", "Users","pool",localStorage.getItem("email"));
+          const querySnapshot = await getDoc(docRef);
+          if(!querySnapshot.exists()){
+            navigate("/waiting")
+          }
+          let s=await getDoc(startRef)
+          if(!s.data().started){
+            navigate("/waiting")
+          }
+        }
+        checkManualRoute()
   }, []);
   const submit = async (e) => {
     e.preventDefault(); 

@@ -4,6 +4,7 @@ import { db } from "../../firebaseConfig";
 // import "./personalScore.css";
 import logo from "/igtsLOGO.png";
 import bgPic from "/bgPIC.png";
+import { useNavigate } from "react-router-dom";
 
 const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
 
@@ -13,11 +14,24 @@ const PersonalScoreUBA = () => {
   const [scores, setScores] = useState([]);
   const [finalScore, setFinalScore] = useState(null);
   const [rank, setRank] = useState(null);
+  const navigate=useNavigate()
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
     // const storedEmail = "igts.tech@gmail.com"; //used it for testing
-    
+    async function checkManualRoute() {
+      const startRef = doc(db, "IGTS","started"); 
+      let docRef=doc(db,"IGTS", "Users","pool",localStorage.getItem("email"));
+      const querySnapshot = await getDoc(docRef);
+      if(!querySnapshot.exists()){
+        navigate("/waiting")
+      }
+      let s=await getDoc(startRef)
+      if(!s.data().started){
+        navigate("/waiting")
+      }
+    }
+    checkManualRoute()
 
     if (storedEmail) {
       setUserEmail(storedEmail);
