@@ -11,6 +11,7 @@ const PersonalScoreDiners = () => {
   const [userPool, setUserPool] = useState(null);
   const [scores, setScores] = useState([]);
   const [finalScore, setFinalScore] = useState(null);
+  const [totalScore, setTotalScore] = useState(null);
   const [rank, setRank] = useState(null);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PersonalScoreDiners = () => {
     const findUserPool = async (email) => {
       try {
         for (let pool of POOLS) {
-          const poolDoc = pool${POOLS.indexOf(pool) + 1};
+          const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
           const usersRef = doc(db, "IGTS", "diners", poolDoc, "users");
           const usersSnap = await getDoc(usersRef);
   
@@ -48,7 +49,7 @@ const PersonalScoreDiners = () => {
   
     const fetchUserScores = async (pool, index) => {
       try {
-        const poolDoc = pool${POOLS.indexOf(pool) + 1};
+        const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
         const scoresRef = doc(db, "IGTS", "diners", poolDoc, "scores");
         const scoresSnap = await getDoc(scoresRef);
   
@@ -56,11 +57,15 @@ const PersonalScoreDiners = () => {
           const allScores = scoresSnap.data();
           const userScores = ["round1", "round2", "round3"].map(
             (round) => (allScores[round]?.[index] ?? "-") === 0 ? 0 :
-              allScores[round]?.[index] ?? "-"
+              parseFloat(allScores[round]?.[index]).toFixed(2) ?? "-"
             );
   
   
           setScores(userScores);
+
+           //Calculate Total Score (Ignore "-" and replace with 0)
+        const numericScores = userScores.map((score) => (score === "-" ? 0 : parseFloat(score)));
+        setTotalScore(numericScores.reduce((acc, curr) => acc + curr, 0).toFixed(2));
         }
       } catch (error) {
         console.error("Error fetching user scores:", error);
@@ -69,7 +74,7 @@ const PersonalScoreDiners = () => {
   
     const fetchFinalScore = async (pool, index) => {
       try {
-        const poolDoc = pool${POOLS.indexOf(pool) + 1};
+        const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
         const finalScoresRef = doc(db, "IGTS", "diners", poolDoc, "finalScores");
         const finalScoresSnap = await getDoc(finalScoresRef);
   
@@ -79,7 +84,7 @@ const PersonalScoreDiners = () => {
   
           if (index !== -1) {
             const userFinalScore = allScores.finalScores[index] || 0;
-            setFinalScore(userFinalScore);
+            setFinalScore(userFinalScore.toFixed(2));
             setRank(calculateRank(userFinalScore, allScores.finalScores));
           }
         }
@@ -124,8 +129,12 @@ const PersonalScoreDiners = () => {
        ))}
  
        <tr className="total-score font-semibold border border-black text-black bg-white last:rounded-b-lg">
-         <td className="py-2 px-4 border border-black">Total</td>
+         <td className="py-2 px-4 border border-black">Normalized</td>
          <td className="py-2 px-4 border border-black">{finalScore}</td>
+              </tr>
+        <tr className="total-score font-semibold border border-black text-black bg-white last:rounded-b-lg">
+         <td className="py-2 px-4 border border-black">Total</td>
+         <td className="py-2 px-4 border border-black">{totalScore}</td>
        </tr>
      </tbody>
    </table>

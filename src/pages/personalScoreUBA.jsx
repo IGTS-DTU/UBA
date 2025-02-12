@@ -13,6 +13,7 @@ const PersonalScoreUBA = () => {
   const [userPool, setUserPool] = useState(null);
   const [scores, setScores] = useState([]);
   const [finalScore, setFinalScore] = useState(null);
+   const [totalScore, setTotalScore] = useState(null);
   const [rank, setRank] = useState(null);
   const navigate=useNavigate()
 
@@ -71,11 +72,15 @@ const PersonalScoreUBA = () => {
         const allScores = scoresSnap.data();
         const userScores = ["round1", "round2", "round3"].map(
           (round) => (allScores[round]?.[index] ?? "-") === 0 ? 0 :
-            allScores[round]?.[index] ?? "-"
+            parseFloat(allScores[round]?.[index]).toFixed(2) ?? "-"
           );
 
 
         setScores(userScores);
+
+        //Calculate Total Score (Ignore "-" and replace with 0)
+        const numericScores = userScores.map((score) => (score === "-" ? 0 : parseFloat(score)));
+        setTotalScore(numericScores.reduce((acc, curr) => acc + curr, 0).toFixed(2));
       }
     } catch (error) {
       console.error("Error fetching user scores:", error);
@@ -94,7 +99,7 @@ const PersonalScoreUBA = () => {
 
         if (index !== -1) {
           const userFinalScore = allScores.finalScores[index] || 0;
-          setFinalScore(userFinalScore);
+          setFinalScore(userFinalScore.toFixed(2));
           setRank(calculateRank(userFinalScore, allScores.finalScores));
         }
       }
@@ -111,7 +116,7 @@ const PersonalScoreUBA = () => {
   
 
   return (
-    <div className="personal-score-container h-screen flex justify-center  bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}>
+    <div className="personal-score-container h-screen flex justify-center  bg-cover  bg-center" style={{ backgroundImage: `url(${bgPIC})` }}>
       
       <div className="score-card flex flex-col items-center ">
         <img src={logo}  alt="IGTS Logo" className="logo h-[15vh]  mb-8 mt-8" />
@@ -138,8 +143,12 @@ const PersonalScoreUBA = () => {
       ))}
 
       <tr className="total-score font-semibold border border-black text-black bg-white last:rounded-b-lg">
-        <td className="py-2 px-4 border border-black">Total</td>
+        <td className="py-2 px-4 border border-black">Normalized</td>
         <td className="py-2 px-4 border border-black">{finalScore}</td>
+              </tr>
+      <tr className="total-score font-semibold border border-black text-black bg-white last:rounded-b-lg">
+        <td className="py-2 px-4 border border-black">Total</td>
+        <td className="py-2 px-4 border border-black">{totalScore}</td>
       </tr>
     </tbody>
   </table>
