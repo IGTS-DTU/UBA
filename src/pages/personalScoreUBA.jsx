@@ -116,7 +116,7 @@ const PersonalScoreUBA = () => {
   
 
   return (
-    <div className="personal-score-container h-screen flex justify-center  bg-cover  bg-center" style={{ backgroundImage: `url(${bgPIC})` }}>
+    <div className="personal-score-container h-screen flex justify-center  bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}>
       
       <div className="score-card flex flex-col items-center ">
         <img src={logo}  alt="IGTS Logo" className="logo h-[15vh]  mb-8 mt-8" />
