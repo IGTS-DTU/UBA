@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-//import "./personalScore.css";
+import "./personalScore.css";
 import logo from "/igtsLOGO.png";
+import { useNavigate } from "react-router-dom";
+
 
 const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
 
@@ -16,7 +18,6 @@ const PersonalScoreUBA = () => {
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
     // const storedEmail = "igts.tech@gmail.com"; //used it for testing
-    
 
     if (storedEmail) {
       setUserEmail(storedEmail);
