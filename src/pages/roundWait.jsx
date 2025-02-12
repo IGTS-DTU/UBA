@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { onSnapshot, doc, collection, getDocs, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig";
 
+import bgPic from "/bgPIC.png";
 export default function RoundWaiting(){
   const navigate=useNavigate();
   useEffect(() => {
