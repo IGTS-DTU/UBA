@@ -55,7 +55,7 @@ function Home() {
   }
   if(user){
     return     <div
-    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center" style={{ backgroundImage: `url(${bgPic})` }}
+    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}
   >
    <img className="h-[15vh]  mb-8 mt-8" src={logo} alt="Logo" />
         <h2 className="text-white text-2xl mb-5 mt-10">{user.name}</h2>

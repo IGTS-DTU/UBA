@@ -48,7 +48,7 @@ export default function WaitingPage(){
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-cover bg-center bg-[url('./bgPIC.png')]">
+    <div className="flex flex-col justify-center items-center h-screen bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}>
       <p className="text-white text-2xl">Please be Patient</p>
       <img 
         src={logo} 

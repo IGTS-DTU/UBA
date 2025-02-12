@@ -10,7 +10,7 @@ export default function ScoreScreen() {
 
   return (
     <div
-    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]"
+    className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}
   >
    <img className="h-[15vh]  mb-8 mt-8" src={logo} alt="Logo" />
       <h1 className="text-3xl font-bold mb-4">SCORES</h1>
