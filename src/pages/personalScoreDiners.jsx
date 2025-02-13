@@ -30,7 +30,7 @@ const PersonalScoreDiners = () => {
     const findUserPool = async (email) => {
       try {
         for (let pool of POOLS) {
-          const poolDoc = pool${POOLS.indexOf(pool) + 1};
+          const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
           const usersRef = doc(db, "IGTS", "diners", poolDoc, "users");
           const usersSnap = await getDoc(usersRef);
   
@@ -49,7 +49,7 @@ const PersonalScoreDiners = () => {
   
     const fetchUserScores = async (pool, index) => {
       try {
-        const poolDoc = pool${POOLS.indexOf(pool) + 1};
+        const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
         const scoresRef = doc(db, "IGTS", "diners", poolDoc, "scores");
         const scoresSnap = await getDoc(scoresRef);
   
@@ -74,7 +74,7 @@ const PersonalScoreDiners = () => {
   
     const fetchFinalScore = async (pool, index) => {
       try {
-        const poolDoc = pool${POOLS.indexOf(pool) + 1};
+        const poolDoc = `pool${POOLS.indexOf(pool) + 1}`;
         const finalScoresRef = doc(db, "IGTS", "diners", poolDoc, "finalScores");
         const finalScoresSnap = await getDoc(finalScoresRef);
   
@@ -102,7 +102,7 @@ const PersonalScoreDiners = () => {
 
 
   return (
-   <div className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]" style={{ backgroundImage: url(${bgPic}) }}>
+   <div className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]" style={{ backgroundImage: `url(${bgPic})` }}>
        
        <div className="score-card flex flex-col items-center ">
          <img src={logo}  alt="IGTS Logo" className="logo h-[15vh]  mb-8 mt-8" />
