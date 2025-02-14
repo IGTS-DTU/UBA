@@ -102,7 +102,7 @@ const PersonalScoreDiners = () => {
 
 
   return (
-     <div className="personal-score-container h-screen flex justify-center  bg-cover bg-center bg-[url('./bgPIC.png')] ">
+   <div className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]" style={{ backgroundImage: `url(${bgPic})` }}>
        
        <div className="score-card flex flex-col items-center ">
          <img src={logo}  alt="IGTS Logo" className="logo h-[15vh]  mb-8 mt-8" />

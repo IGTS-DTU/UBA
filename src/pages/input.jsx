@@ -77,7 +77,8 @@ export default function InputPage() {
   };
 
   return (
-    <div className="h-screen flex justify-center  bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}>
+       <div className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover bg-center bg-[url('./bgPIC.png')]" style={{ backgroundImage: `url(${bgPic})` }}>
+         
     <div className="flex flex-col items-center">
       <img className="h-[20vh] mb-5 mt-10" src={logo} alt="Logo" />
       <h2 className=" text-4xl font-bold text-white font-sans ">{String.fromCharCode(64 + Number(localStorage.getItem("pool")))}</h2>
