@@ -10,6 +10,7 @@ export default function InputPage() {
   const [isSubmit,setSubmit] = useState(false)
   const [round, setRound] = useState(0)
   const navigate=useNavigate()
+  const [sent, setSent] = useState(false)
   useEffect(() => {
     async function getRound() {
       let pool = localStorage.getItem("pool");
@@ -41,6 +42,7 @@ export default function InputPage() {
   }, []);
   const submit = async (e) => {
     e.preventDefault(); 
+    setSent(true)
     const formData = new FormData(e.target); 
     const bid1 = formData.get("bid1");
     const bid2 = formData.get("bid2");
@@ -85,6 +87,7 @@ export default function InputPage() {
       <h2 className="text-3xl mt-2 text-white" style={{fontFamily:"arial"}}>ROUND {round}</h2>
       {!isSubmit ? (
         <form onSubmit={submit} className="flex flex-col items-center mt-16 mb-12">
+          {sent&&<div className="mb-2 text-white text-xl ">Sending input...</div>}
 <input
   name="bid1"
   type="number"
