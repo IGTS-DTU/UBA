@@ -46,7 +46,7 @@ export default function RoundWaiting(){
         alt="Logo" 
         
       />
-      <p className="text-white text-xl">Waiting for others people ....</p>
+      <p className="text-white text-xl">Waiting for others ....</p>
     </div>
   )
 }
