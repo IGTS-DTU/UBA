@@ -23,6 +23,10 @@ export default function InputPage() {
       if(r.data().status){
         navigate("/result")
       }
+      let x=localStorage.getItem("Isubmit")
+      if(r.data().round==x){
+        navigate("/roundWait")
+      }
     }
     getRound()
 
@@ -72,6 +76,7 @@ export default function InputPage() {
         transaction.update(docRef, input );
       });
       console.log("Email updated successfully!");
+      localStorage.setItem("Isubmit",r)
       navigate("/roundWait")
     } catch (error) {
       console.error("Error updating email:", error);

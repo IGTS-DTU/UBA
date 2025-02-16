@@ -16,8 +16,10 @@ export default function WaitingPage(){
         console.log(userId)
         const index = users.data().users.findIndex(user => user == userId);
         console.log(users.data())
-        if(index>-1)
+        if(index>-1){
           localStorage.setItem("index", index);
+          navigate("/input");
+        }
         
     };
     
@@ -36,7 +38,7 @@ export default function WaitingPage(){
           await fetchPool();
           await fetchIndex(localStorage.getItem("pool"));
 
-          navigate("/input");
+          
         }
       }
     });
