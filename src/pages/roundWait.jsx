@@ -39,6 +39,7 @@ export default function RoundWaiting(){
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}>
+      <h2 className=" text-4xl font-bold text-white font-sans ">Pool: {String.fromCharCode(64 + Number(localStorage.getItem("pool")))}</h2>
       <p className="text-white text-2xl">Please be Patient</p>
       <img 
         src={logo} 
