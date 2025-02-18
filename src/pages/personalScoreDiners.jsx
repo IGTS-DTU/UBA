@@ -4,7 +4,7 @@ import { db } from "../../firebaseConfig";
 import logo from "/igtsLOGO.png"; 
 import bgPic from "/bgPIC.png";
 
-const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
+const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E", "Pool F",  "Pool G"];
 
 const PersonalScoreDiners = () => {
   const [userEmail, setUserEmail] = useState(null);

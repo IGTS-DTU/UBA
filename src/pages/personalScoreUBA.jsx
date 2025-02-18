@@ -6,7 +6,7 @@ import logo from "/igtsLOGO.png";
 import bgPic from "/bgPIC.png";
 import { useNavigate } from "react-router-dom";
 
-const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E"];
+const POOLS = ["Pool A", "Pool B", "Pool C", "Pool D", "Pool E", "Pool F",  "Pool G", "Pool H", "Pool I", "Pool J"];
 
 const PersonalScoreUBA = () => {
   const [userEmail, setUserEmail] = useState(null);
