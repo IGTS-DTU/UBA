@@ -11,27 +11,26 @@ function Home() {
     try {
       const user = await loginWithGoogle();
     } catch (error) { 
-      console.log('Some error occured');
+      console.log('Some error occured', error);
     }
   };
 
   useEffect(()=>{
-      onAuthStateChanged(auth, (user) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
         setUser(user)
           if (user) {
-              localStorage.setItem("email", user.providerData[0]?.email);
               console.log("User is logged in");
             } else {
                 console.log("User is logged out");
             }
-        })
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
     },[])
 
   const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-    }
+    logout().catch(error => console.error("Logout failed:", error));
   };
   const navigate=useNavigate();
   const [user, setUser] = useState(auth.currentUser)
@@ -50,16 +49,16 @@ function Home() {
   };
 
   const handleStartGame=async ()=>{
-    await addToQueue(localStorage.getItem("email"));
-    navigate('/waiting')
+    await addToQueue(user.email);
+    navigate('/waiting');
   }
   if(user){
     return     <div
     className="flex flex-col items-center text-lg text-center min-h-screen w-full bg-cover  bg-center" style={{ backgroundImage: `url(${bgPic})` }}
   >
    <img className="h-[15vh]  mb-8 mt-8" src={logo} alt="Logo" />
-        <h2 className="text-white text-2xl mb-5 mt-10">{user.name}</h2>
-       <div className="text-white text-2xl mb-10">{user.providerData[0]?.email}</div>
+        <h2 className="text-white text-2xl mb-5 mt-10">{user.displayName}</h2>
+       <div className="text-white text-2xl mb-10">{user.email}</div>
        
        <button className="h-14 w-[11.5rem] rounded-md border-4 border-black 
                    bg-black text-white text-2xl 
